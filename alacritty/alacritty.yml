@@ -1,0 +1,45 @@
+window:
+  decorations: buttonless
+
+  padding:
+    x: 3
+    y: 3
+
+font:
+  size: 12
+
+  normal:
+    family: "FiraCode Nerd Font Mono"
+
+# Colors
+colors:
+  # Default colors
+  primary:
+    background: "0x24273a"
+    foreground: "0xF8F8F2"
+
+  # Bright colors
+  bright:
+    black: "0x555555"
+    red: "0xFF5555"
+    green: "0x50FA7B"
+    yellow: "0xF1FA8C"
+    blue: "0x6272A4"
+    magenta: "0xFF79C6"
+    cyan: "0x8BE9FD"
+    white: "0xBFBFBF"
+
+## Visual bell
+
+visual_bell: true
+
+# Whether to enable mouse support
+enabled: true
+# Whether to use the alternate screen for scrolling
+use_alt_screen_for_scroll: false
+
+# Whether to scroll to the bottom on output
+scroll_to_bottom_on_output: true
+
+# Hide cursor when typing
+hide_cursor_when_typing: true
