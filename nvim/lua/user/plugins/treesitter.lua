@@ -8,6 +8,7 @@ require("nvim-treesitter.configs").setup({
 		"query",
 		"typescript",
 		"python",
+		"haskell",
 		"rust",
 		"html",
 		"css",

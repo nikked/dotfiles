@@ -51,6 +51,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		"*.toml",
 		"*.md",
 		"*.tf",
+		"*.hs",
 	},
 	callback = function()
 		vim.lsp.buf.format()

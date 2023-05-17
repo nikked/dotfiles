@@ -43,8 +43,8 @@ vim.api.nvim_set_keymap("n", "confe", ":e ~/.config/nvim/lua/user/options.lua<CR
 -- Reload vim configuration file
 vim.api.nvim_set_keymap("n", "confr", ":source ~/.config/nvim/init.lua<CR>", {})
 
--- Open Nerd tree on F8
-vim.api.nvim_set_keymap("n", "<F8>", ":NvimTreeToggle<CR>", {})
+-- Open Nerd tree on tt
+vim.keymap.set("n", "<space>tt", ":NvimTreeToggle<CR>", { desc = "Toggle NerdTree" })
 
 -- Control buffers like tabs with CTRL+ N/P
 vim.api.nvim_set_keymap("n", "<C-N>", ":bnext<CR>", { noremap = true })
