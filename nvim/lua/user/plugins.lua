@@ -189,6 +189,24 @@ use("lewis6991/impatient.nvim")
 -- 	end,
 -- })
 
+use({
+	"mrcjkb/haskell-tools.nvim",
+	requires = {
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope.nvim", -- optional
+	},
+	branch = "1.x.x", -- recommended
+})
+
+use({
+	"glepnir/dashboard-nvim",
+	event = "VimEnter",
+	config = function()
+		require("user.plugins.dashboard")
+	end,
+	requires = { "nvim-tree/nvim-web-devicons" },
+})
+
 -- Automatically install plugins on first run
 if packer_bootstrap then
 	require("packer").sync()
@@ -201,7 +219,6 @@ vim.cmd([[
     autocmd BufWritePost plugins.lua source <afile>
   augroup end
 ]])
-
 -- Lazy loading does not work with some plugins
 require("user.plugins.mason")
 require("user.plugins.rust-tools")

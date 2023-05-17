@@ -1,6 +1,7 @@
 -- Setup language servers.
 local lspconfig = require("lspconfig")
 lspconfig.pyright.setup({})
+lspconfig.terraformls.setup({})
 lspconfig.eslint.setup({
 	flags = { debounce_text_changes = 500 },
 })
