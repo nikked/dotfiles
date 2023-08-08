@@ -37,7 +37,7 @@ require("lualine").setup({
 				},
 			},
 		},
-		lualine_y = { "branch", "diff" },
+		lualine_y = { "location", "branch", "diff" },
 		lualine_z = {},
 	},
 	inactive_sections = {

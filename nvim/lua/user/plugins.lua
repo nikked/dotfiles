@@ -28,7 +28,7 @@ local use = require("packer").use
 -- Packer can manage itself
 use("wbthomason/packer.nvim")
 
-use("github/copilot.vim")
+-- use("github/copilot.vim")
 
 -- LSP
 use({
@@ -198,13 +198,23 @@ use({
 	branch = "1.x.x", -- recommended
 })
 
+-- use({
+-- 	"glepnir/dashboard-nvim",
+-- 	event = "VimEnter",
+-- 	config = function()
+-- 		require("user.plugins.dashboard")
+-- 	end,
+-- 	requires = { "nvim-tree/nvim-web-devicons" },
+-- })
+--
 use({
-	"glepnir/dashboard-nvim",
-	event = "VimEnter",
+	"ggandor/leap.nvim",
+	requires = {
+		"tpope/vim-repeat",
+	},
 	config = function()
-		require("user.plugins.dashboard")
+		require("leap").add_default_mappings()
 	end,
-	requires = { "nvim-tree/nvim-web-devicons" },
 })
 
 -- Automatically install plugins on first run
