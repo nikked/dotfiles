@@ -20,7 +20,20 @@ telescope.setup({
 		find_files = {
 			hidden = true,
 			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+			find_command = {
+				"rg",
+				"--files",
+				"--hidden",
+				"--no-ignore",
+				"--glob",
+				"!**/.git/*",
+				"--glob",
+				"!**/node_modules/*",
+				"--glob",
+				"!**/.mypy_cache/*",
+				"--glob",
+				"!**/.pytest_cache/*",
+			},
 		},
 	},
 })
