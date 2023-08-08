@@ -8,19 +8,20 @@ lspconfig.eslint.setup({
 lspconfig.tsserver.setup({
 	capabilities = capabilities,
 	flags = { debounce_text_changes = 500 },
-	on_attach = function(client, bufnr)
-		client.server_capabilities.documentFormattingProvider = true
-		if client.server_capabilities.documentFormattingProvider then
-			local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*",
-				callback = function()
-					vim.lsp.buf.format({ async = false })
-				end,
-				group = au_lsp,
-			})
-		end
-	end,
+
+	-- on_attach = function(client, bufnr)
+	-- 	client.server_capabilities.documentFormattingProvider = true
+	-- 	if client.server_capabilities.documentFormattingProvider then
+	-- 		local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
+	-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 			pattern = "*",
+	-- 			callback = function()
+	-- 				vim.lsp.buf.format({ async = false })
+	-- 			end,
+	-- 			group = au_lsp,
+	-- 		})
+	-- 	end
+	-- end,
 })
 
 -- Global mappings.
@@ -55,6 +56,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, { desc = "Jump to type definition", unpack(opts) })
 		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, { desc = "Rename symbol", unpack(opts) })
 		vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { desc = "Code action", unpack(opts) })
+		vim.keymap.set("n", "<space>cff", vim.lsp.buf.format, { desc = "Quick format", unpack(opts) })
 		vim.keymap.set(
 			"n",
 			"gr",
