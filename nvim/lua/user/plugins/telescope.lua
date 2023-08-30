@@ -33,6 +33,8 @@ telescope.setup({
 				"!**/.mypy_cache/*",
 				"--glob",
 				"!**/.pytest_cache/*",
+				"--glob",
+				"!**/.next/*",
 			},
 		},
 	},

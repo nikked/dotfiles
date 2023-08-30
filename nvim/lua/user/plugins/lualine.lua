@@ -37,8 +37,8 @@ require("lualine").setup({
 				},
 			},
 		},
-		lualine_y = { "location", "branch", "diff" },
-		lualine_z = {},
+		lualine_y = { "location" },
+		lualine_z = { "branch", "diff" },
 	},
 	inactive_sections = {
 		lualine_a = {},
@@ -48,7 +48,9 @@ require("lualine").setup({
 		lualine_y = {},
 		lualine_z = {},
 	},
-	tabline = {},
+	tabline = {
+		-- lualine_a = { "buffers" }
+	},
 	winbar = {},
 	inactive_winbar = {},
 	extensions = {},

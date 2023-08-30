@@ -217,6 +217,13 @@ use({
 	end,
 })
 
+use({
+	"brenoprata10/nvim-highlight-colors",
+	config = function()
+		require("nvim-highlight-colors").setup({})
+	end,
+})
+
 -- Automatically install plugins on first run
 if packer_bootstrap then
 	require("packer").sync()

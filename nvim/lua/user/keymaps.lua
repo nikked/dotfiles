@@ -74,6 +74,6 @@ vim.keymap.set("v", "p", '"_dP')
 -- Delete to the black hole register in visual mode
 vim.keymap.set("v", "x", '"_x', { noremap = true })
 
--- move text up and down
+-- move text up and down in visual mode
 vim.keymap.set("x", "<s-j>", ":move '>+1<cr>gv-gv")
 vim.keymap.set("x", "<S-k>", ":move '<-2<CR>gv-gv")
