@@ -2,26 +2,24 @@
 local lspconfig = require("lspconfig")
 lspconfig.pyright.setup({})
 lspconfig.terraformls.setup({})
-lspconfig.eslint.setup({
-	flags = { debounce_text_changes = 500 },
-})
-lspconfig.tsserver.setup({
-	capabilities = capabilities,
-	flags = { debounce_text_changes = 500 },
 
-	on_attach = function(client, bufnr)
-		client.server_capabilities.documentFormattingProvider = true
-		if client.server_capabilities.documentFormattingProvider then
-			local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*",
-				callback = function()
-					vim.lsp.buf.format({ async = false })
-				end,
-				group = au_lsp,
-			})
-		end
-	end,
+lspconfig.eslint.setup {
+  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+  capabilities = capabilities,
+  root_dir = lspconfig.util.root_pattern("package.json"),
+  on_attach = function(_, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+}
+
+lspconfig.tsserver.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  single_file_support = false,
+  root_dir = lspconfig.util.root_pattern("package.json"),
 })
 
 -- Global mappings.
