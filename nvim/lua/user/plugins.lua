@@ -28,7 +28,7 @@ local use = require("packer").use
 -- Packer can manage itself
 use("wbthomason/packer.nvim")
 
--- use("github/copilot.vim")
+use("github/copilot.vim")
 
 -- LSP
 use({
@@ -130,6 +130,8 @@ use({
 	cmd = "G",
 })
 
+use("sindrets/diffview.nvim")
+
 use({
 	"lewis6991/gitsigns.nvim",
 	requires = "nvim-lua/plenary.nvim",
@@ -218,11 +220,21 @@ use({
 })
 
 use({
+	"stevearc/oil.nvim",
+	config = function()
+		require("oil").setup({})
+	end,
+	requires = { "nvim-tree/nvim-web-devicons" },
+})
+
+use({
 	"brenoprata10/nvim-highlight-colors",
 	config = function()
 		require("nvim-highlight-colors").setup({})
 	end,
 })
+
+use("mg979/vim-visual-multi")
 
 -- Automatically install plugins on first run
 if packer_bootstrap then

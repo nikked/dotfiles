@@ -11,6 +11,15 @@ vim.keymap.set("n", "<space>fk", builtin.keymaps, { desc = "Search keymaps" })
 vim.keymap.set("n", "<space>fq", builtin.quickfix, { desc = "Search items in quickfix list" })
 vim.keymap.set("n", "<space>fs", builtin.lsp_document_symbols, { desc = "Search symbols in current file" })
 vim.keymap.set("n", "<space>fS", builtin.lsp_workspace_symbols, { desc = "Search symbols in workspace" })
+vim.keymap.set("n", "<space>fd", builtin.lsp_workspace_symbols, { desc = "Search symbols in workspace" })
+
+-- Oil
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+vim.keymap.set("n", "<space>vc", builtin.git_commits, { desc = "Check git commits" })
+vim.keymap.set("n", "<space>vb", builtin.git_branches, { desc = "Check git branches" })
+vim.keymap.set("n", "<space>vs", builtin.git_status, { desc = "Check git status" })
+vim.keymap.set("n", "<space>vt", builtin.git_stash, { desc = "Check git stash" })
 
 -- Move between the splits without using the mouse: split navigations
 vim.api.nvim_set_keymap("n", "<C-J>", "<C-W><C-J>", {})

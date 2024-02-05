@@ -2,24 +2,27 @@
 local lspconfig = require("lspconfig")
 lspconfig.pyright.setup({})
 lspconfig.terraformls.setup({})
+lspconfig.tailwindcss.setup({})
 
-lspconfig.eslint.setup {
-  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-  capabilities = capabilities,
-  root_dir = lspconfig.util.root_pattern("package.json"),
-  on_attach = function(_, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
-}
+lspconfig.eslint.setup({
+	filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+	capabilities = capabilities,
+	root_dir = lspconfig.util.root_pattern("package.json"),
+	on_attach = function(_, bufnr)
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			command = "EslintFixAll",
+		})
+	end,
+})
+
+lspconfig.ruff_lsp.setup({})
 
 lspconfig.tsserver.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  single_file_support = false,
-  root_dir = lspconfig.util.root_pattern("package.json"),
+	on_attach = on_attach,
+	capabilities = capabilities,
+	single_file_support = false,
+	root_dir = lspconfig.util.root_pattern("package.json"),
 })
 
 -- Global mappings.

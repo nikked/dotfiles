@@ -16,6 +16,7 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.gitlint,
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.eslint,
+		null_ls.builtins.diagnostics.ruff,
 		-- null_ls.builtins.diagnostics.ltrs,
 		null_ls.builtins.diagnostics.jsonlint,
 		null_ls.builtins.diagnostics.commitlint,
