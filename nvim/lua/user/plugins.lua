@@ -1,253 +1,170 @@
--- Install packer
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
-		return true
-	end
-	return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+require("lazy").setup({
 
--- Initialize packer
-require("packer").init({
-	compile_path = vim.fn.stdpath("data") .. "/site/plugin/packer_compiled.lua",
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "solid" })
+	"github/copilot.vim",
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	"sindrets/diffview.nvim",
+	"tpope/vim-commentary",
+	"mg979/vim-visual-multi",
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-refactor",
+		},
+		build = ":TSUpdate",
+		config = function()
+			require("user.plugins.treesitter")
+		end,
+	},
+
+	-- LSP
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"folke/lsp-colors.nvim",
+			plu,
+		},
+		config = function()
+			require("user.plugins.lspconfig")
+		end,
+	},
+
+	{
+		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/vim-vsnip",
+			"hrsh7th/vim-vsnip-integ",
+			"hrsh7th/cmp-nvim-lsp-signature-help", -- Display func signature with current arg emphasized
+			"onsails/lspkind-nvim", -- VSCode like pictograms
+		},
+		config = function()
+			require("user.plugins.cmp")
+		end,
+	},
+
+	-- Displays a popup with possible key bindings of the command you started typing
+	{
+		"folke/which-key.nvim",
+		config = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+			require("which-key").setup()
+		end,
+	},
+
+	-- Linters, formatters, codeactions, diagnostics
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			require("user.plugins.null-ls")
+		end,
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	},
+
+	-- Git
+	{
+		"tpope/vim-fugitive",
+		cmd = "G",
+	},
+
+	{
+		"lewis6991/gitsigns.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
+	},
+
+	-- Fuzzy finding
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = { { "nvim-lua/plenary.nvim" } },
+	},
+
+	-- Status bar
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("user.plugins.lualine")
+		end,
+	},
+
+	-- Vertical lines for indentation
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("user.plugins.indent-blankline")
+		end,
+	},
+
+	-- File system explorer
+	{
+		"nvim-tree/nvim-tree.lua",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("user.plugins.nvim-tree")
+		end,
+	},
+
+	-- Colorschemes
+	{ "bluz71/vim-moonfly-colors", name = "moonfly" },
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+	},
+	"EdenEast/nightfox.nvim", -- terafox etc.
+	{
+		"ggandor/leap.nvim",
+		dependencies = {
+			"tpope/vim-repeat",
+		},
+		config = function()
+			require("leap").add_default_mappings()
+		end,
+	},
+	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
+	{
+		"brenoprata10/nvim-highlight-colors",
+		config = function()
+			require("nvim-highlight-colors").setup()
 		end,
 	},
 })
 
--- Install plugins
-local use = require("packer").use
-
--- Packer can manage itself
-use("wbthomason/packer.nvim")
-
-use("github/copilot.vim")
-
--- LSP
-use({
-	"neovim/nvim-lspconfig",
-	requires = {
-		"folke/lsp-colors.nvim",
-		plu,
-	},
-	config = function()
-		require("user.plugins.lspconfig")
-	end,
-})
-
-use({
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-})
-
-use({
-	"weilbith/nvim-code-action-menu",
-	cmd = "CodeActionMenu",
-})
-
-use({
-	"hrsh7th/nvim-cmp",
-	requires = {
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-cmdline",
-		"hrsh7th/cmp-nvim-lua",
-		"hrsh7th/vim-vsnip",
-		"hrsh7th/vim-vsnip-integ",
-		"hrsh7th/cmp-nvim-lsp-signature-help", -- Display func signature with current arg emphasized
-		"onsails/lspkind-nvim", -- VSCode like pictograms
-	},
-	config = function()
-		require("user.plugins.cmp")
-	end,
-})
-
--- Displays a popup with possible key bindings of the command you started typing
-use({
-	"folke/which-key.nvim",
-	config = function()
-		vim.o.timeout = true
-		vim.o.timeoutlen = 300
-		require("which-key").setup({})
-	end,
-})
-
--- Rename in a popup window
--- use({
--- 	"hood/popui.nvim",
--- 	requires = "RishabhRD/popfix",
--- 	config = function()
--- 		vim.ui.select = require("popui.ui-overrider")
--- 		vim.ui.input = require("popui.input-overrider")
--- 	end,
--- })
-
-use({
-	"simrat39/rust-tools.nvim",
-})
-
--- Linters, formatters, codeactions, diagnostics
-use({
-	"jose-elias-alvarez/null-ls.nvim",
-	config = function()
-		require("user.plugins.null-ls")
-	end,
-})
-
-use({
-	"nvim-treesitter/nvim-treesitter",
-	run = ":TSUpdate",
-	requires = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		"nvim-treesitter/nvim-treesitter-refactor",
-	},
-	config = function()
-		require("user.plugins.treesitter")
-	end,
-})
-
-use({
-	"kylechui/nvim-surround",
-	tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-	config = function()
-		require("nvim-surround").setup({
-			-- Configuration here, or leave empty to use defaults
-		})
-	end,
-})
-
--- Git
-use({
-	"tpope/vim-fugitive",
-	cmd = "G",
-})
-
-use("sindrets/diffview.nvim")
-
-use({
-	"lewis6991/gitsigns.nvim",
-	requires = "nvim-lua/plenary.nvim",
-})
-
--- Fuzzy finding
-use({
-	"nvim-telescope/telescope.nvim",
-	tag = "0.1.1",
-	requires = { { "nvim-lua/plenary.nvim" } },
-})
-
--- Code Commenting
-use("tpope/vim-commentary")
-
--- Status bar
-use({
-	"nvim-lualine/lualine.nvim",
-	requires = "kyazdani42/nvim-web-devicons",
-	config = function()
-		require("user.plugins.lualine")
-	end,
-})
-
--- Vertical lines for indentation
-use({
-	"lukas-reineke/indent-blankline.nvim",
-	config = function()
-		require("user.plugins.indent-blankline")
-	end,
-})
-
--- File system explorer
-use({
-	"kyazdani42/nvim-tree.lua",
-	requires = "kyazdani42/nvim-web-devicons",
-	config = function()
-		require("user.plugins.nvim-tree")
-	end,
-})
-
--- Colorschemes
-use({ "bluz71/vim-moonfly-colors", as = "moonfly" })
-use({
-	"catppuccin/nvim",
-	as = "catppuccin",
-})
-use("EdenEast/nightfox.nvim") -- terafox etc.
-
--- Cache dependencies for faster startup
-use("lewis6991/impatient.nvim")
-
--- use({
--- 	"glacambre/firenvim",
--- 	run = function()
--- 		vim.fn["firenvim#install"](0)
--- 	end,
--- })
-
-use({
-	"mrcjkb/haskell-tools.nvim",
-	requires = {
-		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim", -- optional
-	},
-	branch = "1.x.x", -- recommended
-})
-
--- use({
--- 	"glepnir/dashboard-nvim",
--- 	event = "VimEnter",
--- 	config = function()
--- 		require("user.plugins.dashboard")
--- 	end,
--- 	requires = { "nvim-tree/nvim-web-devicons" },
--- })
---
-use({
-	"ggandor/leap.nvim",
-	requires = {
-		"tpope/vim-repeat",
-	},
-	config = function()
-		require("leap").add_default_mappings()
-	end,
-})
-
-use({
-	"stevearc/oil.nvim",
-	config = function()
-		require("oil").setup({})
-	end,
-	requires = { "nvim-tree/nvim-web-devicons" },
-})
-
-use({
-	"brenoprata10/nvim-highlight-colors",
-	config = function()
-		require("nvim-highlight-colors").setup({})
-	end,
-})
-
-use("mg979/vim-visual-multi")
-
--- Automatically install plugins on first run
-if packer_bootstrap then
-	require("packer").sync()
-end
-
--- Automatically regenerate compiled loader file on save
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile>
-  augroup end
-]])
 -- Lazy loading does not work with some plugins
 require("user.plugins.mason")
 require("user.plugins.rust-tools")
