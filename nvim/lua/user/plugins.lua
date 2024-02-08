@@ -16,9 +16,8 @@ require("lazy").setup({
 	"github/copilot.vim",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	"sindrets/diffview.nvim",
+	-- "sindrets/diffview.nvim",
 	"tpope/vim-commentary",
-	"mg979/vim-visual-multi",
 
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -135,12 +134,12 @@ require("lazy").setup({
 	},
 
 	-- Colorschemes
-	{ "bluz71/vim-moonfly-colors", name = "moonfly" },
+	-- { "bluz71/vim-moonfly-colors", name = "moonfly" },
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 	},
-	"EdenEast/nightfox.nvim", -- terafox etc.
+	-- "EdenEast/nightfox.nvim", -- terafox etc.
 	{
 		"ggandor/leap.nvim",
 		dependencies = {
@@ -163,6 +162,7 @@ require("lazy").setup({
 			require("nvim-highlight-colors").setup()
 		end,
 	},
+	"mg979/vim-visual-multi",
 })
 
 -- Lazy loading does not work with some plugins

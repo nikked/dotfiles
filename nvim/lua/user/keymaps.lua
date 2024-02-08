@@ -55,9 +55,9 @@ vim.api.nvim_set_keymap("n", "confr", ":source ~/.config/nvim/init.lua<CR>", {})
 -- Open Nerd tree on tt
 vim.keymap.set("n", "<space>tt", ":NvimTreeToggle<CR>", { desc = "Toggle NerdTree" })
 
--- Control buffers like tabs with CTRL+ N/P
-vim.api.nvim_set_keymap("n", "<C-N>", ":bnext<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-P>", ":bprev<CR>", { noremap = true })
+-- -- Control buffers like tabs with CTRL+ N/P
+vim.api.nvim_set_keymap("n", "<C-S-N>", ":bnext<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-S-P>", ":bprev<CR>", { noremap = true })
 
 -- Disable arrow keys
 vim.api.nvim_set_keymap("n", "<Up>", "<Nop>", { noremap = true })
