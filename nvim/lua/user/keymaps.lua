@@ -86,3 +86,17 @@ vim.keymap.set("v", "x", '"_x', { noremap = true })
 -- move text up and down in visual mode
 vim.keymap.set("x", "<s-j>", ":move '>+1<cr>gv-gv")
 vim.keymap.set("x", "<S-k>", ":move '<-2<CR>gv-gv")
+
+vim.api.nvim_set_keymap("x", "<space>fa", [[<Esc>:'<,'>:w !echo<CR>]], { noremap = true, silent = true })
+
+vim.cmd("map ,l :!make lint<CR>")
+vim.cmd("map ,t :!make tc<CR>")
+vim.cmd("map ,f :!make format<CR>")
+vim.cmd("map ,r :!make refresh-local-deps<CR>")
+
+local map = vim.keymap.set
+
+map("n", "<leader>db", ":DBUIToggle<CR>", { desc = "[D]atabase [B]rowser" })
+map("n", "<leader>ds", "<Plug>(DBUI_SaveQuery)", { desc = "[D]atabase [S]ave Query" })
+map("n", "<leader>de", "<Plug>(DBUI_ExecuteQuery)", { desc = "[D]atabase [E]xecute Query" })
+map("n", "<leader>dp", "<Plug>(DBUI_EditBindParameters)", { desc = "[D]atabase Edit Bind [P]arameters" })

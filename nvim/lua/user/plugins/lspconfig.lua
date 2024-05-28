@@ -3,6 +3,7 @@ local lspconfig = require("lspconfig")
 lspconfig.pyright.setup({})
 lspconfig.terraformls.setup({})
 lspconfig.tailwindcss.setup({})
+lspconfig.sqlls.setup({})
 
 lspconfig.eslint.setup({
 	filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },

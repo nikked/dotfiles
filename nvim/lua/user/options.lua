@@ -49,11 +49,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		-- "*.yaml",
 		-- "*.yml",
 		"*.ts",
-		-- "*.tsx",
+		"*.tsx",
 		"*.toml",
 		"*.md",
 		"*.tf",
 		"*.hs",
+		"*.swift",
 	},
 	callback = function()
 		vim.lsp.buf.format()

@@ -18,6 +18,7 @@ require("lazy").setup({
 	"williamboman/mason-lspconfig.nvim",
 	-- "sindrets/diffview.nvim",
 	"tpope/vim-commentary",
+	"tpope/vim-dadbod",
 
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -163,11 +164,15 @@ require("lazy").setup({
 		end,
 	},
 	"mg979/vim-visual-multi",
-})
 
+	-- Dadbod
+	"tpope/vim-dadbod",
+	"kristijanhusak/vim-dadbod-ui",
+	"kristijanhusak/vim-dadbod-completion",
+})
 -- Lazy loading does not work with some plugins
 require("user.plugins.mason")
-require("user.plugins.rust-tools")
+-- require("user.plugins.rust-tools")
 require("user.plugins.catppuccin")
 require("user.plugins.gitsigns")
 require("user.plugins.telescope")
