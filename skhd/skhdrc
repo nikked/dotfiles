@@ -7,7 +7,8 @@ alt - h : yabai -m window --focus west
 alt - l : yabai -m window --focus east
 
 #change focus between external displays (left and right)
-alt - s: yabai -m display --focus west; yabai -m display --focus north
+# alt - s: yabai -m display --focus west; yabai -m display --focus north
+alt - s: /System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine
 alt - g: yabai -m display --focus east; yabai -m display --focus south
 
 # Move between MacOS spaces without slow animation
