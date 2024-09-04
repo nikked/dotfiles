@@ -100,3 +100,16 @@ map("n", "<leader>db", ":DBUIToggle<CR>", { desc = "[D]atabase [B]rowser" })
 map("n", "<leader>ds", "<Plug>(DBUI_SaveQuery)", { desc = "[D]atabase [S]ave Query" })
 map("n", "<leader>de", "<Plug>(DBUI_ExecuteQuery)", { desc = "[D]atabase [E]xecute Query" })
 map("n", "<leader>dp", "<Plug>(DBUI_EditBindParameters)", { desc = "[D]atabase Edit Bind [P]arameters" })
+
+-- Trouble keymapping
+map("n", "<space>xx", ":Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
+map("n", "<space>xX", ":Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
+map("n", "<space>cs", ":Trouble symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
+map(
+	"n",
+	"<space>cl",
+	":Trouble lsp toggle focus=false win.position=right<CR>",
+	{ desc = "LSP Definitions / references / ... (Trouble)" }
+)
+map("n", "<space>xL", ":Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
+map("n", "<space>xQ", ":Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })

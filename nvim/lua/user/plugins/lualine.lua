@@ -18,14 +18,14 @@ require("lualine").setup({
 		},
 	},
 	sections = {
-		lualine_a = { "mode" },
+		lualine_a = {},
 		lualine_b = {
 			{
 				"filename",
 				path = 1, -- Relative path
 			},
 		},
-		lualine_c = { "diagnostics" },
+		lualine_c = { "diagnostics", "diff" },
 		lualine_x = {
 			{
 				"buffers",
@@ -37,8 +37,10 @@ require("lualine").setup({
 				},
 			},
 		},
-		lualine_y = { "location" },
-		lualine_z = { "branch", "diff" },
+		lualine_y = {
+			"location",
+		},
+		lualine_z = {},
 	},
 	inactive_sections = {
 		lualine_a = {},

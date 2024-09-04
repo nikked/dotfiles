@@ -164,7 +164,11 @@ require("lazy").setup({
 		end,
 	},
 	"mg979/vim-visual-multi",
-
+	{
+		"folke/trouble.nvim",
+		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		cmd = "Trouble",
+	},
 	-- Dadbod
 	"tpope/vim-dadbod",
 	"kristijanhusak/vim-dadbod-ui",
