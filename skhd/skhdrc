@@ -16,7 +16,8 @@ alt - p: yabai -m space --focus prev
 alt - n: yabai -m space --focus next
 
 # Create and destroy spaces
-alt - c: yabai -m space --create; yabai -m window --space next; yabai -m space --focus next;
+# conflicts with logic pro colors
+# alt - c: yabai -m space --create; yabai -m window --space next; yabai -m space --focus next;
 alt - d: yabai -m space --destroy
 
 # -- Modifying the Layout --

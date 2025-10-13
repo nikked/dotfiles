@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-	"github/copilot.vim",
+	-- "github/copilot.vim",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	-- "sindrets/diffview.nvim",
@@ -77,12 +77,13 @@ require("lazy").setup({
 	},
 
 	-- Linters, formatters, codeactions, diagnostics
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			require("user.plugins.null-ls")
-		end,
-	},
+  -- null-ls is deprecated
+	-- {
+	-- 	"jose-elias-alvarez/null-ls.nvim",
+	-- 	config = function()
+	-- 		require("user.plugins.null-ls")
+	-- 	end,
+	-- },
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
