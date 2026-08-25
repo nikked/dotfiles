@@ -6,26 +6,51 @@ vim.lsp.config('terraformls', {})
 vim.lsp.config('tailwindcss', {})
 vim.lsp.config('sqlls', {})
 
-vim.lsp.config('eslint', {
-  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-  capabilities = capabilities,
-  root_dir = util.root_pattern("package.json"),
-  on_attach = function(_, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
-})
+
+
+
+
 
 vim.lsp.config('ruff', {})
 
+
 vim.lsp.config('ts_ls', {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  single_file_support = false,
-  root_dir = util.root_pattern("package.json"),
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  root_markers = { 'tsconfig.json', 'package.json', 'jsconfig.json', '.git' },
+  -- capabilities = capabilities, -- uncomment if needed
+  on_attach = function(client, bufnr)
+    -- Example: format on save if you want
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    print('TypeScript LSP attached to buffer ' .. bufnr)
+  end,
 })
+
+-- vim.lsp.config('eslint', {
+--   cmd = { 'vscode-eslint-language-server', '--stdio' },
+--   filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+--   root_markers = { '.eslintrc', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', 'package.json' },
+--   -- capabilities = capabilities, -- uncomment if you have cmp_nvim_lsp
+--   on_attach = function(_, bufnr)
+--     -- Run ESLint fix before saving
+--     vim.api.nvim_create_autocmd('BufWritePre', {
+--       buffer = bufnr,
+--       command = 'EslintFixAll',
+--     })
+--   end,
+-- })
+
+vim.lsp.config('eslint', {
+  cmd = { 'vscode-eslint-language-server', '--stdio' },
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  root_markers = { '.eslintrc', 'package.json' },
+  settings = { run = 'onSave' },
+
+})
+
+
+
+
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
