@@ -55,9 +55,9 @@ vim.api.nvim_set_keymap("n", "confr", ":source ~/.config/nvim/init.lua<CR>", {})
 -- Open Nerd tree on tt
 vim.keymap.set("n", "<space>tt", ":NvimTreeToggle<CR>", { desc = "Toggle NerdTree" })
 
--- Control buffers like tabs with CTRL+ N/P
-vim.api.nvim_set_keymap("n", "<C-N>", ":bnext<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-P>", ":bprev<CR>", { noremap = true })
+-- -- Control buffers like tabs with CTRL+ N/P
+vim.api.nvim_set_keymap("n", "<C-S-N>", ":bnext<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-S-P>", ":bprev<CR>", { noremap = true })
 
 -- Disable arrow keys
 vim.api.nvim_set_keymap("n", "<Up>", "<Nop>", { noremap = true })
@@ -86,3 +86,30 @@ vim.keymap.set("v", "x", '"_x', { noremap = true })
 -- move text up and down in visual mode
 vim.keymap.set("x", "<s-j>", ":move '>+1<cr>gv-gv")
 vim.keymap.set("x", "<S-k>", ":move '<-2<CR>gv-gv")
+
+vim.api.nvim_set_keymap("x", "<space>fa", [[<Esc>:'<,'>:w !echo<CR>]], { noremap = true, silent = true })
+
+vim.cmd("map ,l :!make lint<CR>")
+vim.cmd("map ,t :!make tc<CR>")
+vim.cmd("map ,f :!make format<CR>")
+vim.cmd("map ,r :!make refresh-local-deps<CR>")
+
+local map = vim.keymap.set
+
+map("n", "<leader>db", ":DBUIToggle<CR>", { desc = "[D]atabase [B]rowser" })
+map("n", "<leader>ds", "<Plug>(DBUI_SaveQuery)", { desc = "[D]atabase [S]ave Query" })
+map("n", "<leader>de", "<Plug>(DBUI_ExecuteQuery)", { desc = "[D]atabase [E]xecute Query" })
+map("n", "<leader>dp", "<Plug>(DBUI_EditBindParameters)", { desc = "[D]atabase Edit Bind [P]arameters" })
+
+-- Trouble keymapping
+map("n", "<space>xx", ":Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
+map("n", "<space>xX", ":Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
+map("n", "<space>cs", ":Trouble symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
+map(
+	"n",
+	"<space>cl",
+	":Trouble lsp toggle focus=false win.position=right<CR>",
+	{ desc = "LSP Definitions / references / ... (Trouble)" }
+)
+map("n", "<space>xL", ":Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
+map("n", "<space>xQ", ":Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
