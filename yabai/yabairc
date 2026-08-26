@@ -25,7 +25,7 @@ yabai -m config bottom_padding               1
 yabai -m config left_padding                 2
 yabai -m config right_padding                2
 yabai -m config window_gap                   2
-yabai -m config external_bar                 main:28:0
+yabai -m config external_bar                 main:24:0
 
 # disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
