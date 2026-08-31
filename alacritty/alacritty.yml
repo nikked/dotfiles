@@ -41,5 +41,3 @@ use_alt_screen_for_scroll: false
 # Whether to scroll to the bottom on output
 scroll_to_bottom_on_output: true
 
-# Hide cursor when typing
-hide_cursor_when_typing: true

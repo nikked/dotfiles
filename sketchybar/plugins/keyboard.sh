@@ -6,8 +6,8 @@ LAYOUT="$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSel
 # specify short layouts individually.
 case "$LAYOUT" in
     "Dvorak") SHORT_LAYOUT="DV";;
-    "\"U.S.\"") SHORT_LAYOUT="US";;
-    *) SHORT_LAYOUT="FI";;
+    "\"U.S.\"") SHORT_LAYOUT="";;
+    *) SHORT_LAYOUT="-";;
 esac
 
 sketchybar --set keyboard label="$SHORT_LAYOUT"
