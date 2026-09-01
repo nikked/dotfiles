@@ -55,10 +55,6 @@ vim.api.nvim_set_keymap("n", "confr", ":source ~/.config/nvim/init.lua<CR>", {})
 -- Open Nerd tree on tt
 vim.keymap.set("n", "<space>tt", ":NvimTreeToggle<CR>", { desc = "Toggle NerdTree" })
 
--- -- Control buffers like tabs with CTRL+ N/P
-vim.api.nvim_set_keymap("n", "<C-S-N>", ":bnext<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-S-P>", ":bprev<CR>", { noremap = true })
-
 -- Disable arrow keys
 vim.api.nvim_set_keymap("n", "<Up>", "<Nop>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<Down>", "<Nop>", { noremap = true })
@@ -106,10 +102,15 @@ map("n", "<space>xx", ":Trouble diagnostics toggle<CR>", { desc = "Diagnostics (
 map("n", "<space>xX", ":Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
 map("n", "<space>cs", ":Trouble symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
 map(
-	"n",
-	"<space>cl",
-	":Trouble lsp toggle focus=false win.position=right<CR>",
-	{ desc = "LSP Definitions / references / ... (Trouble)" }
+  "n",
+  "<space>cl",
+  ":Trouble lsp toggle focus=false win.position=right<CR>",
+  { desc = "LSP Definitions / references / ... (Trouble)" }
 )
 map("n", "<space>xL", ":Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
 map("n", "<space>xQ", ":Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
+
+
+-- -- Control buffers like tabs with space + fp/fn
+map("n", "<space>fn", ":bnext<CR>", { noremap = true })
+map("n", "<space>fp", ":bprev<CR>", { noremap = true })

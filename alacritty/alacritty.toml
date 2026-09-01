@@ -27,11 +27,20 @@ magenta = "0xFF79C6"
 cyan = "0x8BE9FD"
 white = "0xBFBFBF"
 
-## Visual bell
-visual_bell = true
-# Whether to use the alternate screen for scrolling
-use_alt_screen_for_scroll = false
-# Whether to scroll to the bottom on output
-scroll_to_bottom_on_output = true
-# Hide cursor when typing
-hide_cursor_when_typing = true
+[keyboard]
+bindings = [
+  { key = "Key1", mods = "Command", chars = "\u00061" },  # C-f 1
+  { key = "Key2", mods = "Command", chars = "\u00062" },  # C-f 2
+  { key = "Key3", mods = "Command", chars = "\u00063" },  # C-f 3
+  { key = "Key4", mods = "Command", chars = "\u00064" },  # C-f 4
+  { key = "Key5", mods = "Command", chars = "\u00065" },  # C-f 5
+  { key = "Key6", mods = "Command", chars = "\u00066" },  # C-f 6
+  { key = "Key7", mods = "Command", chars = "\u00067" },  # C-f 7
+  { key = "Key8", mods = "Command", chars = "\u00068" },  # C-f 8
+  { key = "Key9", mods = "Command", chars = "\u00069" },  # C-f 9
+  { key = "H", mods = "Command", chars = "\u0006\u001B[D" },  # C-f Left
+  { key = "J", mods = "Command", chars = "\u0006\u001B[B" },  # C-f Down
+  { key = "K", mods = "Command", chars = "\u0006\u001B[A" },  # C-f Up
+  { key = "L", mods = "Command", chars = "\u0006\u001B[C" },  # C-f Right
+  { key = "W", mods = "Command", chars = "ReceiveChar" },  # Bind this to no-op to disable cmd+w from closing window
+]
